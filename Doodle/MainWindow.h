@@ -37,7 +37,7 @@ void SafeRelease(T**ppT)
 class MainWindow : public BaseWindow<MainWindow>
 {
 public:
-	MainWindow() :pFactory(NULL), pRenderTarget(NULL), pBrush(NULL) {}
+	MainWindow() :pFactory(NULL), pRenderTarget(NULL), pBrush(NULL),ellipse(D2D1::Ellipse(D2D1::Point2F(),0,0)),pMouse(D2D1::Point2F()) {}
 
 	PCWSTR  ClassName() const { return L"Doodle Window Class"; }
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -46,12 +46,19 @@ private:
 	// COM interfaces...
 	ID2D1Factory * pFactory;
 	ID2D1HwndRenderTarget * pRenderTarget;
-	ID2D1SolidColorBrush * pBrush;			
+	ID2D1SolidColorBrush * pBrush;	
 
+	D2D1_ELLIPSE  ellipse;
+	D2D1_POINT_2F pMouse;
 
 	// Create the Resource needed for Drawing
 	HRESULT CreateGraphicsResource();
 	void DiscardGraphicsResource();
+
+	// handlers
+	void OnLButtonDown(int pixelX, int pixelY, DWORD flags);
+	void OnLButtonUp();
+	void OnMouseMove(int pixelX, int pixelY, DWORD flags);
 
 	// Draw
 	void OnPaint();

@@ -20,6 +20,9 @@
 */
 
 #include "MainWindow.h"
+#include"DPIConverter.h"
+#include<WindowsX.h>		// for GET_X_LPARAM and GET_Y_LPARAM
+
 LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
@@ -27,13 +30,23 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory)))		// initialize the Factory
 			return -1;	// The Creation of the Window failed.
+		
+		DPIConverter::Initilize(m_hwnd);
 		return 0;
 
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
+	case WM_LBUTTONDOWN:
+		OnLButtonDown(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (DWORD)(wParam));
 
+	case WM_LBUTTONUP:
+		OnLButtonUp();
+		return 0;
 
+	case WM_MOUSEMOVE:
+		OnMouseMove(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), (DWORD)wParam);
+		return 0;
 	case WM_SIZE:
 		Resize();
 		return 0;
@@ -65,7 +78,7 @@ HRESULT MainWindow::CreateGraphicsResource()
 
 		if (SUCCEEDED(hr))
 		{
-			const D2D1_COLOR_F color = D2D1::ColorF(1.0f, 1.0f, 0.0f, 0.2f);
+			const D2D1_COLOR_F color = D2D1::ColorF(0.0f, 1.0f, 0.0f, 1.0f);
 			hr = pRenderTarget->CreateSolidColorBrush(color, &pBrush);
 
 			if (FAILED(hr))
@@ -84,6 +97,42 @@ void MainWindow::DiscardGraphicsResource()
 	SafeRelease(&pBrush);
 }
 
+void MainWindow::OnLButtonDown(int pixelX, int pixelY, DWORD flags)
+{
+	// begin Capturing the Mouse
+	SetCapture(m_hwnd);		
+
+	// Store the position of the Mouse
+	ellipse.point = pMouse = DPIConverter::PixelsToDIPs(pixelX, pixelY);
+	ellipse.radiusX = ellipse.radiusY = 1.0f;
+
+	// force the Window to be repainted.
+	InvalidateRect(m_hwnd, NULL, FALSE);
+
+}
+
+void MainWindow::OnLButtonUp()
+{
+	ReleaseCapture();
+}
+
+void MainWindow::OnMouseMove(int pixelX, int pixelY, DWORD flags)
+{
+	if (flags & MK_LBUTTON)
+	{
+		const D2D1_POINT_2F dips = DPIConverter::PixelsToDIPs(pixelX, pixelY);
+
+		const float width = (dips.x - pMouse.x) / 2;
+		const float height = (dips.y - pMouse.y) / 2;
+		const float x1 = pMouse.x + width;
+		const float y1 = pMouse.y + height;
+
+		ellipse = D2D1::Ellipse(D2D1::Point2F(x1, y1), width, height);
+
+		InvalidateRect(m_hwnd, NULL, FALSE);
+	}
+}
+
 void MainWindow::OnPaint()
 {
 	HRESULT hr = CreateGraphicsResource();
@@ -96,7 +145,9 @@ void MainWindow::OnPaint()
 
 		pRenderTarget->BeginDraw();
 		pRenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::White));		// Draw Command 1
-		
+
+		pRenderTarget->FillEllipse(ellipse, pBrush);
+
 		hr = pRenderTarget->EndDraw();		// check if the Draw was successful
 
 		if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
