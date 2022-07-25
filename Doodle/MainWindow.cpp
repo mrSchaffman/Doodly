@@ -28,60 +28,32 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{
-		// Handle the window activation.
-	case WM_ACTIVATE:
-		{
-			// Extend the frame into the client area.
-			MARGINS margins;
+	//	// Handle the window activation.
+	//case WM_ACTIVATE:
+	//	{
+	//		// Extend the frame into the client area.
+	//		MARGINS margins;
 
-			margins.cxLeftWidth = 18;      // 8
-			margins.cxRightWidth = 18;    // 8
-			margins.cyBottomHeight = 20; // 20
-			margins.cyTopHeight = 27;       // 27
+	//		margins.cxLeftWidth = 1;      // 8
+	//		margins.cxRightWidth = 1;    // 8
+	//		margins.cyBottomHeight = 1; // 20
+	//		margins.cyTopHeight = 27;       // 27
 
-			HRESULT hr = DwmExtendFrameIntoClientArea(m_hwnd, &margins);
+	//		HRESULT hr = DwmExtendFrameIntoClientArea(m_hwnd, &margins);
 
-			if (!SUCCEEDED(hr))
-			{
-				// Handle the error.
-			}
+	//		if (!SUCCEEDED(hr))
+	//		{
+	//			// Handle the error.
+	//		}
 
-		}		return 0;
+	//	}		return 0;
 
 	case WM_CREATE:
 		if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory)))		// initialize the Factory
 			return -1;	// The Creation of the Window failed.
 		
 		DPIConverter::Initilize(m_hwnd);
-
-		RECT rcClient;
-		GetWindowRect(m_hwnd, &rcClient);
-
-		// Inform the application of the frame change.
-		SetWindowPos(m_hwnd,
-			NULL,
-			rcClient.left, 
-			rcClient.top,
-			rcClient.right, 
-			rcClient.bottom,
-			SWP_FRAMECHANGED
-		);
 		return 0;
-
-	//	// Handle the non-client size message.
-	//case WM_NCCALCSIZE:
-	//	if (wParam == TRUE)
-	//	{
-	//		// Calculate new NCCALCSIZE_PARAMS based on custom NCA inset.
-	//		NCCALCSIZE_PARAMS *pncsp = reinterpret_cast<NCCALCSIZE_PARAMS*>(lParam);
-
-	//		pncsp->rgrc[0].left = pncsp->rgrc[0].left + 0;
-	//		pncsp->rgrc[0].top = pncsp->rgrc[0].top + 0;
-	//		pncsp->rgrc[0].right = pncsp->rgrc[0].right - 0;
-	//		pncsp->rgrc[0].bottom = pncsp->rgrc[0].bottom - 0;
-
-
-	//	}
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
@@ -190,6 +162,7 @@ void MainWindow::OnPaint()
 		PAINTSTRUCT ps;
 
 		BeginPaint(m_hwnd, &ps);
+
 
 		pRenderTarget->BeginDraw();
 		pRenderTarget->Clear(D2D1::ColorF(D2D1::ColorF::Black));		// Draw Command 1

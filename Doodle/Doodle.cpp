@@ -94,7 +94,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPInstance, PWSTR pCmdLine, i
 	//if (!GetClientRect(win.Window(), &rect))
 	//	return NULL;
 
-	//int sbHeight = 20;
+	//int sbHeight = 15;
 	//// Create the scroll bar.
 	//HWND scr = CreateWindowEx(
 	//	0,                      // no extended styles 
