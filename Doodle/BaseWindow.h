@@ -31,15 +31,18 @@ public:
 
 	static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
-		TYPE *pThis = NULL;
+		TYPE *pThis = NULL;			// to be use as the State of the create Window.
 
-		if (uMsg == WM_NCCREATE)
+		if (uMsg == WM_NCCREATE)	// This message is send before the WM_CREATE, so it is the best place to set the hwnd of the window to be created
 		{
-			CREATESTRUCT* pCreate = (CREATESTRUCT*)lParam;
-			pThis = (TYPE*)pCreate->lpCreateParams;
-			SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pThis);
+			CREATESTRUCT* pCreate = (CREATESTRUCT*)lParam;		// get the struct containing the info about the Window to be created.
+			pThis = (TYPE*)pCreate->lpCreateParams;				// retreive the void* pointer specifyied when creating the Window with CreateWindowEx.
+
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pThis);	//Sets the user data associated with the window hwnd.
 
 			pThis->m_hwnd = hwnd;
+
+			return TRUE;	// If the application returns FALSE, the CreateWindow or CreateWindowEx function will return a NULL handle.
 		}
 		else
 		{
@@ -56,10 +59,11 @@ public:
 	}
 
 
+
 	BOOL Create(
+		DWORD dwExStyle,
 		PCWSTR lpWindowName,
-		DWORD dwStyle,
-		DWORD dwExStyle = 0,
+		DWORD dwStyle,				// DWORD: Allocates and optionally initializes a double word (4 bytes) of storage for each initializer
 		int x = CW_USEDEFAULT,
 		int y = CW_USEDEFAULT,
 		int nWidth = CW_USEDEFAULT,
@@ -88,8 +92,8 @@ public:
 			nHeight,
 			hWndParent,
 			hMenu,
-			GetModuleHandle(NULL),
-			this
+			GetModuleHandle(NULL),			// HINSTANCE: A handle to the instance of the module to be associated with the window.
+			this							// taking itself as state pointer.
 		);
 
 		return (m_hwnd ? TRUE : FALSE);

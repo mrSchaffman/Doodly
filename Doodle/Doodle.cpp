@@ -36,7 +36,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPInstance, PWSTR pCmdLine, i
 {
 	MainWindow win;
 
-	if (!win.Create(L"Doodle App", WS_OVERLAPPEDWINDOW, WS_EX_APPWINDOW, 400, 400, 500, 500))
+	if (!win.Create(WS_EX_APPWINDOW,L"Doodle App", WS_OVERLAPPEDWINDOW, 400, 400, 500, 500))
 	{
 		return 0;
 	}

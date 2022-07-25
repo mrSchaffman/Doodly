@@ -87,7 +87,7 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 HRESULT MainWindow::CreateGraphicsResource()
 {
 	HRESULT hr = S_OK;
-	if (pRenderTarget == NULL)
+	if (!pRenderTarget )
 	{
 		RECT rc;
 		GetClientRect(m_hwnd, &rc);

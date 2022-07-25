@@ -39,7 +39,11 @@ class MainWindow : public BaseWindow<MainWindow>
 public:
 	MainWindow() :pFactory(NULL), pRenderTarget(NULL), pBrush(NULL),ellipse(D2D1::Ellipse(D2D1::Point2F(),0,0)),pMouse(D2D1::Point2F()) {}
 
-	PCWSTR  ClassName() const { return L"Doodle Window Class"; }
+	PCWSTR  ClassName() const 
+	{
+		return L"Doodle Window Class"; 
+	}
+
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 private:
