@@ -32,6 +32,9 @@
     <ClCompile Include="MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wincontrol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -43,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="DPIaware.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+    <Manifest Include="Doodle.exe.manifest">
       <Filter>Resource Files</Filter>
     </Manifest>
   </ItemGroup>

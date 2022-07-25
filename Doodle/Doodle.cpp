@@ -19,13 +19,17 @@
 
 */
 
+//#pragma comment(linker,"\"/manifestdependency:type='win32' \
+//name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
+//processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+
 #ifndef UNICODE
 #define UNICODE
 #endif // UNICODE
 
 #include<Windows.h>
 #include"MainWindow.h"
-
+#include"uxtheme.h"			// SetWindowTheme
 
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPInstance, PWSTR pCmdLine, int nCmdShow)
@@ -36,6 +40,94 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPInstance, PWSTR pCmdLine, i
 	{
 		return 0;
 	}
+	//HWND hwndButton = CreateWindowEx(
+	//	0,
+	//	L"BUTTON",  // Predefined class; Unicode assumed
+	//	L"OK",      // Button text
+	//	WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,  // Styles
+	//	10,         // x position
+	//	100,         // y position
+	//	50,        // Button width
+	//	50,        // Button height
+	//	win.Window(),     // Parent window
+	//	NULL,       // No menu.
+	//	(HINSTANCE)GetWindowLongPtr(win.Window(), GWLP_HINSTANCE),
+	//	NULL      // Pointer not needed.
+	//);
+	//
+	////HRESULT hr  = SetWindowTheme(hwndButton, L" ", L" ");		
+
+	//HWND hwndButton2 = CreateWindowEx(
+	//	0,
+	//	L"BUTTON",  // Predefined class; Unicode assumed
+	//	L"GROUP BOX",      // Button text
+	//	WS_TABSTOP | WS_VISIBLE | WS_CHILD | /*BS_DEFPUSHBUTTON*/ BS_GROUPBOX,  // Styles
+	//	60,         // x position
+	//	10,         // y position
+	//	200,        // Button width
+	//	150,        // Button height
+	//	win.Window(),     // Parent window
+	//	NULL,       // No menu.
+	//	(HINSTANCE)GetWindowLongPtr(win.Window(), GWLP_HINSTANCE),
+	//	NULL      // Pointer not needed.
+	//);
+	//HWND hwndButton3 = CreateWindowEx(
+	//	0,
+	//	L"BUTTON",  // Predefined class; Unicode assumed
+	//	L"OK TEST",      // Button text
+	//	WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_COMMANDLINK,  // Styles
+	//	10,         // x position
+	//	300,         // y position
+	//	150,        // Button width
+	//	50,        // Button height
+	//	win.Window(),     // Parent window
+	//	NULL,       // No menu.
+	//	(HINSTANCE)GetWindowLongPtr(win.Window(), GWLP_HINSTANCE),
+	//	NULL      // Pointer not needed.
+	//);
+
+
+	//// create a scrollbar
+	//RECT rect;
+
+	//// Get the dimensions of the parent window's client area;
+	//if (!GetClientRect(win.Window(), &rect))
+	//	return NULL;
+
+	//int sbHeight = 20;
+	//// Create the scroll bar.
+	//HWND scr = CreateWindowEx(
+	//	0,                      // no extended styles 
+	//	L"SCROLLBAR",           // scroll bar control class 
+	//	(PTSTR)NULL,           // no window text 
+	//	WS_CHILD | WS_VISIBLE   // window styles  
+	//	| SBS_HORZ,         // horizontal scroll bar style 
+	//	rect.left,              // horizontal position 
+	//	rect.bottom - sbHeight, // vertical position 
+	//	rect.right,             // width of the scroll bar 
+	//	sbHeight,               // height of the scroll bar
+	//	win.Window(),             // handle to main window 
+	//	(HMENU)NULL,           // no menu 
+	//	(HINSTANCE)GetWindowLongPtr(win.Window(), GWLP_HINSTANCE),
+	//	(PVOID)NULL            // pointer not needed 
+	//);
+
+	//HWND hwndCommandLink = CreateWindowEx(
+	//	0,
+	//	L"BUTTON",  // Predefined class; Unicode assumed
+	//	L"",        // Text will be defined later
+	//	WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_COMMANDLINK,  // Styles
+	//	200,        // x position 
+	//	10,         // y position 
+	//	200,        // Button width
+	//	100,        // Button height
+	//	win.Window(),             // handle to main window 
+	//	NULL,       // No menu
+	//	(HINSTANCE)GetWindowLongPtr(win.Window(), GWLP_HINSTANCE),
+	//	NULL);      // Pointer not needed
+	//SendMessage(hwndCommandLink, WM_SETTEXT, 0, (LPARAM)L"Command link");
+	//SendMessage(hwndCommandLink, BCM_SETNOTE, 0, (LPARAM)L"with note");
+
 
 	ShowWindow(win.Window(), nCmdShow);
 
