@@ -53,6 +53,12 @@ LRESULT MainWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			return -1;	// The Creation of the Window failed.
 		
 		DPIConverter::Initilize(m_hwnd);
+		if (m_hwnd)
+		{
+			//DWMWINDOWATTRIBUTE att{};
+			//DWM_WINDOW_CORNER_PREFERENCE preference = DWMWCP_ROUND;
+			//DwmSetWindowAttribute(m_hwnd, DWMWA_WINDOW_CORNER_PREFERENCE, &preference, sizeof(preference));
+		}
 		return 0;
 	case WM_DESTROY:
 		PostQuitMessage(0);
