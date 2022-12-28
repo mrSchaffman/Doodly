@@ -20,27 +20,18 @@
 
 */
 
+namespace doodly {
+	class Facade
+	{
+	public:
+		Facade(/*HINSTANCE h*/)/* :m_hinstance{h}*/ {};
+		static const char* getFacadeDescription() { return "the Facade of my system"; }
+		void run();
 
-#include"Data.h"
-#include<string>
-#include<memory>
-namespace abstraction {
-	namespace boundary {
-		namespace proxy {
-			class Observer
-			{
-			public:
-				Observer(const std::string& n) : name{ n } {}
-				const std::string& getName() const { return name; }
-				virtual void notify(std::shared_ptr<abstraction::data_abstraction::Data> d) { notifyImpl(d); };
-				virtual ~Observer() = default;
+	protected:
+		virtual void start() {};
+	private:
+		//HINSTANCE m_hinstance;
+	};
 
-			private:
-				virtual void notifyImpl(std::shared_ptr<abstraction::data_abstraction::Data> d) = 0;
-
-			private:
-				std::string name;
-			};
-		}
-	}
 }

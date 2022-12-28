@@ -20,27 +20,27 @@
 
 */
 
+namespace client_subsystem {
+	namespace controller {
+		namespace timer {
+			//class DoodlyTimer : public abstraction::control::timer::Timer
+			//{
+			//public:
+			//	DoodlyTimer(HWND hWnd, int id, UINT period) :m_hwnd{ hWnd }
+			//	{
+			//		//SetTimer(hWnd, id, period,TimerProc);
+			//		SetTimer(hWnd, id, period, NULL);
+			//	}
 
-#include"Data.h"
-#include<string>
-#include<memory>
-namespace abstraction {
-	namespace boundary {
-		namespace proxy {
-			class Observer
-			{
-			public:
-				Observer(const std::string& n) : name{ n } {}
-				const std::string& getName() const { return name; }
-				virtual void notify(std::shared_ptr<abstraction::data_abstraction::Data> d) { notifyImpl(d); };
-				virtual ~Observer() = default;
+			//	~DoodlyTimer()
+			//	{
+			//	}
 
-			private:
-				virtual void notifyImpl(std::shared_ptr<abstraction::data_abstraction::Data> d) = 0;
-
-			private:
-				std::string name;
-			};
+			//private:
+			//	static void CALLBACK TimerProc(HWND hWnd, UINT uTimerMsg, UINT uTimerID, DWORD dwTime);
+			//private:
+			//	HWND m_hwnd;
+			//};
 		}
 	}
 }

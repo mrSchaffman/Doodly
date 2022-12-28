@@ -20,27 +20,26 @@
 
 */
 
+#include"Observer.h"
+#include"CommandDispatcher.h"
+namespace doodly {
+	namespace client_subsystem {
+		namespace view {
+			namespace proxy {
+				class UserInterfaceObserver : public abstraction::boundary::proxy::Observer
+				{
+				public:
+					explicit UserInterfaceObserver(controller::control::state_dependent_control::CommandDispatcher& ce)
+						: Observer{ "UserInterfaceObserver" },
+						m_ce{ ce }
+					{};
 
-#include"Data.h"
-#include<string>
-#include<memory>
-namespace abstraction {
-	namespace boundary {
-		namespace proxy {
-			class Observer
-			{
-			public:
-				Observer(const std::string& n) : name{ n } {}
-				const std::string& getName() const { return name; }
-				virtual void notify(std::shared_ptr<abstraction::data_abstraction::Data> d) { notifyImpl(d); };
-				virtual ~Observer() = default;
+				private:
+					void notifyImpl(std::shared_ptr<abstraction::data_abstraction::Data>) override;
 
-			private:
-				virtual void notifyImpl(std::shared_ptr<abstraction::data_abstraction::Data> d) = 0;
-
-			private:
-				std::string name;
-			};
+					controller::control::state_dependent_control::CommandDispatcher& m_ce;
+				};
+			}
 		}
 	}
 }

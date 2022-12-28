@@ -20,18 +20,24 @@
 
 */
 
+#include"Command.h"
+namespace doodly {
+	namespace client_subsystem {
+		namespace controller {
+			namespace control {
+				namespace coordinator {
+					class ClientCoordinator
+					{
+					public:
+						ClientCoordinator(/* args */)/* :m_server_coordinator{} */ {}
+						~ClientCoordinator() {}
+						void executeCommand(abstraction::data_abstraction::command::unique_command_ptr c);
 
-#include"Data.h"
-#include<memory>
-namespace boundary {
-	namespace user_interaction {
-		class IUserInteraction
-		{
-		public:
-			virtual ~IUserInteraction() = default;
-			virtual void sendInput() = 0;
-			virtual void sendOutput(const char*) = 0;
-			virtual void display(std::shared_ptr<abstraction::data_abstraction::Data>d) = 0;
-		};
+					private:
+						//server_subsystem::control::coordinator::ServerCoordinator m_server_coordinator;
+					};
+				}
+			}
+		}
 	}
 }

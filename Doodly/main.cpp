@@ -18,4 +18,21 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 */
+#ifndef UNICODE
+#define UNICODE
+#endif // UNICODE
+
+#include"Facade.h"
+#include<Windows.h>
+
+using namespace doodly;
+
+int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE hPInstance, PWSTR pCmdLine, int nCmdShow)
+{
+	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
+	Facade facade;
+	facade.run();
+
+	return 0;
+}
 

@@ -22,24 +22,17 @@
 
 
 #include"Data.h"
-#include<string>
 #include<memory>
 namespace abstraction {
 	namespace boundary {
-		namespace proxy {
-			class Observer
+		namespace user_interaction {
+			class IUserInteraction
 			{
 			public:
-				Observer(const std::string& n) : name{ n } {}
-				const std::string& getName() const { return name; }
-				virtual void notify(std::shared_ptr<abstraction::data_abstraction::Data> d) { notifyImpl(d); };
-				virtual ~Observer() = default;
-
-			private:
-				virtual void notifyImpl(std::shared_ptr<abstraction::data_abstraction::Data> d) = 0;
-
-			private:
-				std::string name;
+				virtual ~IUserInteraction() = default;
+				virtual void sendInput() = 0;
+				virtual void sendOutput(const char*) = 0;
+				virtual void display(std::shared_ptr<abstraction::data_abstraction::Data>d) = 0;
 			};
 		}
 	}

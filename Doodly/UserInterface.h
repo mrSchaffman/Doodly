@@ -20,27 +20,31 @@
 
 */
 
+#include"Publisher.h"
+#include"IUserInteraction.h"
+namespace doodly {
+	namespace client_subsystem {
+		namespace view {
+			namespace boundary {
+				namespace user_interaction {
+					class UserInterface : public abstraction::boundary::user_interaction::IUserInteraction, protected service_system::publisher::Publisher
+					{
+					public:
+						static const char* InputEntered;
 
-#include"Data.h"
-#include<string>
-#include<memory>
-namespace abstraction {
-	namespace boundary {
-		namespace proxy {
-			class Observer
-			{
-			public:
-				Observer(const std::string& n) : name{ n } {}
-				const std::string& getName() const { return name; }
-				virtual void notify(std::shared_ptr<abstraction::data_abstraction::Data> d) { notifyImpl(d); };
-				virtual ~Observer() = default;
+					public:
+						UserInterface() { Publisher::registerEvent(InputEntered); }
+						virtual ~UserInterface() = default;
+						// virtual void sendInput() override;
+						// virtual void sendOutput(const char *) override;
 
-			private:
-				virtual void notifyImpl(std::shared_ptr<abstraction::data_abstraction::Data> d) = 0;
-
-			private:
-				std::string name;
-			};
+					public:
+						using Publisher::notify;
+						using Publisher::subscribe;
+						using Publisher::unsubscribe;
+					};
+				}
+			}
 		}
 	}
 }

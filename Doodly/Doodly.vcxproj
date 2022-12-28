@@ -139,8 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BrokerHandler.cpp" />
+    <ClCompile Include="ClientCoordinator.cpp" />
+    <ClCompile Include="CommandDispatcher.cpp" />
+    <ClCompile Include="CommandRepository.cpp" />
+    <ClCompile Include="DoodleTimer.cpp" />
+    <ClCompile Include="Facade.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="TokenizerService.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="UserInterfaceObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Doodly.rc" />
@@ -151,16 +160,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseWindow.h" />
+    <ClInclude Include="BrokerHandler.h" />
+    <ClInclude Include="ClientCoordinator.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandDispatcher.h" />
+    <ClInclude Include="CommandRepository.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="DoodleTimer.h" />
     <ClInclude Include="Exception.h" />
+    <ClInclude Include="Facade.h" />
     <ClInclude Include="ICommandFactory.h" />
     <ClInclude Include="IManager.h" />
     <ClInclude Include="IService.h" />
-    <ClInclude Include="IUserInterface.h" />
+    <ClInclude Include="IUserInteraction.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="Publisher.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="TokenizerService.h" />
+    <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="UserInterfaceObserver.h" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="Doodly.exe.manifest" />
