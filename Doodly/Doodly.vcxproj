@@ -151,7 +151,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseWindow.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="ICommandFactory.h" />
+    <ClInclude Include="IManager.h" />
+    <ClInclude Include="IService.h" />
+    <ClInclude Include="IUserInterface.h" />
     <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
-
-<!-- Copyright (C) 2022  Barth.Feudong
+#pragma once
+/*
+	Copyright (C) 2022  Barth.Feudong
 	Author can be contacted here: <https://github.com/mrSchaffman/Doodly>
 
 	This file is part of the Doodly project. using the Win32 API and The COM
@@ -15,12 +16,28 @@
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <https://www.gnu.org/licenses/>.-->
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" >
-  <asmv3:application>
-    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">
-      <dpiAware>true</dpiAware>
-    </asmv3:windowsSettings>
-  </asmv3:application>
-</assembly>
+*/
+
+
+#include"Data.h"
+#include<memory>
+#include<string>
+namespace abstraction {
+	namespace logic {
+		namespace service {
+			class IService
+			{
+			public:
+			public:
+				virtual ~IService() = default;
+				virtual std::string getName() const = 0;
+				virtual abstraction::data_abstraction::OutputData* transform(std::shared_ptr<abstraction::data_abstraction::InputData> d) = 0;
+				virtual const std::string getServiceDescription() const = 0;
+				virtual const std::string getServiceLocalisation() const = 0;
+			};
+
+		}
+	}
+}

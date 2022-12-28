@@ -1,15 +1,15 @@
 /*
 	Copyright (C) 2022  Barth.Feudong
-	Author can be contacted here: <https://github.com/mrSchaffman/Cpp-Doodle-App>
+	Author can be contacted here: <https://github.com/mrSchaffman/Doodly>
 
-	This file is part of the Doodle project. using the Win32 API and The COM
+	This file is part of the Doodly project. using the Win32 API and The COM
 
-	Doodle is free software: you can redistribute it and/or modify
+	Doodly is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
 
-	Doodle is distributed in the hope that it will be useful,
+	Doodly is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
